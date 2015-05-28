@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>Open sTeam Collaboration platform</h1>
+        <p>
+            The sTeam Collaboration platform is.......
+        </p>
+        <a href="" class="btn btn-primary btn-info btn-lg" data-toggle="modal" data-target="#signUp" ><span class="glyphicon glyphicon-search"></span> Sing Up</a>
+    </div>
+    <div class="modal fade" id="signIn">
+        <div class="modal-dialog " >
+            <div class="modal-content panel-primary ">
+                <div class="modal-header panel-heading" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title">Sign In</h3>
+                </div>
+                <div class="modal-body">
+                    <form role="form" name="SingInForm">
+                        <div class="form-group">
+                            <h4><label for="userSignIn">Nickname</label></h4>
+                            <input type="text" class="form-control input-lg" id="userSignIn" size="8" placeholder="Nickname...." name="userSignIn" ng-model="userSignIn" required>       
+                        </div>
+                        <div class="form-group"> 
+                            <h4><label for="signInpwd">Password:</label></h4>
+                            <input type="password" class="form-control input-lg" id="signInpwd" size="8" placeholder="Password" name="signInpwd" ng-model="signInpwd" required>  
+                        </div> 
+                </div>
+                <div class="modal-footer">
+                    <a type="submit" onclick="logIn()""data-loading-text="Sing In......"class="btn btn-success btn-lg"  ng-disabled="(SingInForm.userSignIn.$error.required) || (SingInForm.signInpwd.$error.required)" id="btnSignIn" autocomplete="off"> Sign In </a>
+                    <button type="button" class="btn  btn-danger btn-lg" data-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>	
+        </div>
+    </div>
+    <div class="modal fade" id="signUp">
+        <div class="modal-dialog" >
+            <div class="modal-content panel-primary">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title">Sign Up</h3>
+                </div>
+                <div class="modal-body">
+                    <form role="form" name="SingUpForm">
+                        <div class="form-group">
+                            <h4><label for="emailSignUp">Email address:</label></h4>
+                            <input type="email" class="form-control input-lg" id="emailSignUp" name="emailSignUp" ng-model="emailSignUp" placeholder="Email address" required>
+                            <span style="color:red" ng-show="SingUpForm.emailSignUp.$dirty && SingUpForm.emailSignUp.$invalid">
+                                <span ng-show="SingUpForm.emailSignUp.$error.required">Email is required.</span>
+                                <span ng-show="SingUpForm.emailSignUp.$error.email">Invalid email address.</span>
+                            </span>                                    
+                        </div>
+                        <div class="form-group">                
+                            <h4><label for="signUppwd">Password:</label></h4>
+                            <input type="text" class="form-control input-lg" id="signUppwd" size="8" name="signUppwd" ng-model="signUppwd" placeholder="Password" required>
+                            <span style="color:red" ng-show="SingUpForm.signUppwd.$dirty && SingUpForm.signUppwd.$invalid">
+                                <span ng-show="SingUpForm.signUppwd.$error.required">Password is required.</span>
+                            </span>
+                        </div>
+                         <div class="form-group">                
+                            <h4><label for="signUpRePass">Password:</label></h4>
+                            <input type="text" class="form-control input-lg" id="signUpRePass" size="8" name="signUpRePass" ng-model="signUpRePass" placeholder="Password" required>
+                            <span style="color:red" ng-show="SingUpForm.signUpRePass.$dirty && SingUpForm.signUpRePass.$invalid">
+                                <span ng-show="SingUpForm.signUpRePass.$error.required">Password is required.</span>
+                            </span>
+                        </div>                        
+                        <div class="form-group">
+                            <h4><label for="group">Group name:</label></h4>
+                            <input type="text" class="form-control input-lg" id="group" size="8" name="group" ng-model="group"  placeholder="Group name.." required>                            
+                            <span style="color:red" ng-show="SingUpForm.group.$dirty && SingUpForm.group.$invalid">
+                                <span ng-show="SingUpForm.group.$error.required">Group name is required.</span>
+                            </span>
+                        </div>                                  
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-lg" ng-disabled="(SingUpForm.emailSignUp.$dirty && SingUpForm.emailSignUp.$invalid) || (SingUpForm.signUppwd.$dirty && SingUpForm.signUppwd.$invalid) || (SingUpForm.signUpRePass.$dirty && SingUpForm.signUpRePass.$invalid) || (SingUpForm.group.$dirty && SingUpForm.group.$invalid)" ng-click="singUp()" >Sign Up</button>
+                    <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+<div class="container">
+    <div class="modal fade" id="updateFile">
+        <div class="modal-dialog " >
+            <div class="modal-content panel-primary ">
+                <div class="modal-header panel-heading" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title">Update: {{UpdateFileName}} File</h3>
+                </div>
+                <div class="modal-body">
+                    <form name="updatefile-form" id="updatefile-form"  action="" method="post" enctype="multipart/form-data"  style="visibility: hidden;">
+                        <input name="updatefile" id="updatefile" type="file" size="50" onchange="$('#updatefileName').val($(this).val());" required/>
+                    </form>
+                    <form role="form"  name="updateFiles">								
+                        <div class="input-group">   
+                            <span class="input-group-btn">
+                                <button  class="btn btn-danger" type="button" onclick="$('#updatefile').click();">
+                                    <span class="glyphicon glyphicon-folder-open">  </span>      Browse File
+                                </button>
+                            </span>
+                            <input name="updatefilename" type="text" class="form-control" value="No file selected"id="updatefileName" readonly>
+                        </div> 
+                        <div class="modal-footer">
+                            <button ng-disabled="updatefile-form.updatefile.$error.required"   autocomplete="off" data-loading-text="Updating Room...." id="update-button" type="submit"  class="btn  btn-success btn-lg" ng-click="updateFile()">Add File</button>
+                            <button type="button" class="btn  btn-danger btn-lg" data-dismiss="modal">Cancel</button>					
+                        </div>
+                    </form>
+                </div>	
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="uploadFileModal">
+        <div class="modal-dialog " >
+            <div class="modal-content panel-primary ">
+                <div class="modal-header panel-heading" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title">Add New File</h3>
+                </div>
+                <div class="modal-body">   
+                    <form id="file-form"  action="" method="post" enctype="multipart/form-data" style="visibility: hidden;">
+                        <input id="file" type="file" name="file" size="50" onchange="$('#fileName').val($(this).val());"/>
+                    </form>
+                    <form role="form">								
+                        <div class="input-group">   
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" onclick="$('#file').click();">                                         <span class="glyphicon glyphicon-folder-open"></span>Browse File
+                                </button>
+                            </span>
+                            <input type="text" class="form-control" value="No file selected"id="fileName">                                  <span class="input-group-btn"></span>
+                        </div> 
+                        <div class="modal-footer">
+                            <button autocomplete="off" data-loading-text="Deleting Room...."  id="upload-button" type="submit" class="btn  btn-success btn-lg" ng-click="createNewFile()">Add File</button>
+                            <button type="button" class="btn  btn-danger btn-lg" data-dismiss="modal">Cancel</button>                    </div>
+                    </form>                
+                </div>	
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="createRoomModal">
+        <div class="modal-dialog " >
+            <div class="modal-content panel-primary ">
+                <div class="modal-header panel-heading" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title">Create New Room</h3>
+                </div>
+                <div class="modal-body">
+                    <form role="form" name="addRoomForm">
+                     <div class="form-group">
+                            <h4><label for="roomName">New Room Name:</label></h4>
+                            <input type="text" class="form-control" ng-model="roomName" name="roomName" id="roomName" placeholder="Room name..."   required> 
+                        </div>		
+                        <div class="modal-footer">
+                           <button autocomplete="off" data-loading-text="Creating Room...." ng-disabled="addRoomForm.roomName.$error.required" id="createRoombtn" class="btn btn-info btn-lg" type="button" ng-click="createRoom();">Add Room</button>
+                    	   <button type="button" class="btn  btn-danger btn-lg" data-dismiss="modal">Cancel</button>        
+                    	</div>
+                    </form>        
+                </div>	
+            </div>
+        </div>
+    </div>  
+     
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <b>Navigation pane</b>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a ng-repeat="url in paths" href="#{{url.url}}"class="list-group-item" ng-class="{'list-group-item active':$last}">
+                            <b>{{url.name}}</b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <b>Room:{{name}}</b>            
+                    </h3><br>
+                    <a ng-hide="isHome();" ng-click="showUploadModal()" class="btn btn-info btn-md">Add new File</a>
+                    <a  class="btn btn-success btn-md" data-toggle="modal" data-target="#createRoomModal">Create new Room</a>      
+                </div>
+                <div class="panel-body">
+                    <h3 ng-show="empty" style="color:red">{{Data.error.message}} </h3>
+                    <div class="table-responsive" ng-hide="empty">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Last Edit</th>
+                                    <th>Author</th>
+                                    <th>Type</th>
+                                    <td>
+                                    <td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in rooms">
+                                    <td>{{data.name}}</td>
+                                    <td>{{data.dateCreated}}</td>
+                                    <td></td>
+                                    <td>Room</td>
+                                    <td><a ng-href="#/{{data.path}}"class="btn btn-success btn-sm" style="width: 90px">Open</a> 
+                                        <a class="btn btn-danger btn-sm" ng-click="deleteRoom(data.path)">Delete</a></td>
+                                </tr>
+                                <tr ng-repeat="docoment in documents">
+                                    <td>{{docoment.name}}</td>
+                                    <td>{{docoment.lastEdit}}</td>
+                                    <td>{{docoment.author}}</td>
+                                    <td>Document</td>
+                                    <td><a ng-href="{{RestQueryBase}}/{{docoment.path}}"target="_blank" class="btn btn-success btn-sm" style="width: 90px">Download</a> 
+                                        <a ng-click="showUpadateModal(docoment.name)" class="btn btn-info btn-sm">Update</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>               
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

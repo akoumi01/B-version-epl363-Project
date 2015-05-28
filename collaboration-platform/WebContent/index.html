@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="webPlatformApp">
+<head>
+    <title>sTeam Collaboration platform</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body  >
+    <div class="row" ng-controller="navController">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" 
+         data-target="#navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">Open sTeam Collaboration platform</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li ng-hide="isLogOut();" ng-class="setClass('/home')">
+                            <a href="#/home"><span class="glyphicon glyphicon-folder-open"> Groups</span></a>
+                        </li>
+                        <li ng-show="isLogOut();" class="active">
+                            <a href="">Home</a>
+                        </li>
+                        <li ng-hide="isLogOut();" ng-class="setClass('/notifications')">
+                            <a href="#/notifications"><span class="glyphicon glyphicon-home" > Home</span></a>
+                        </li>
+                        <li ng-hide="isLogOut();" ng-class="setClass('/messages')">
+                            <a href="#/messages"><span class="glyphicon glyphicon-envelope" > Messaging</span></a>
+                        </li>
+                        <li ng-hide="isLogOut();" ng-class="setClass('/adminPanel')">
+                            <a href="#/adminPanel"><span class="glyphicon glyphicon-list-alt" > Admin Panel</span></a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-hide="isLogOut();" ng-class="setClass('/editProfile')">
+                            <a href="#/editProfile"><span class="glyphicon glyphicon-user" > Edit Profile</span></a>
+                        </li>
+                        <li ng-hide="isLogOut();" ng-class="setClass('/index')">
+                            <a href="#/index" ><span class="glyphicon glyphicon-log-in"> Log out</span></a>
+                        </li>
+                        <li ng-show="isLogOut();">
+                            <a href="" data-toggle="modal" data-target="#signUp"><span class="glyphicon glyphicon-user" ></span> Sign Up</a>
+                        </li>
+                        <li ng-show="isLogOut();">
+                            <a href=""data-toggle="modal" data-target="#signIn"><span class="glyphicon glyphicon-log-in" ></span> Log in</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+     <div class="modal fade" id="loadingBarModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog " >
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="progress" id="loadingBar">
+                        <div class="progress-bar  progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                            Loading .........
+                        </div>
+                    </div>        
+                </div>	
+            </div>
+        </div>
+    </div> 
+    <div ng-view></div>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/localStorageModule.js"></script>
+    <script src="sTeamCollaborationPlatformApp.js"></script>
+    <script src="servises.js"></script>
+
+
+</body>
+</html>

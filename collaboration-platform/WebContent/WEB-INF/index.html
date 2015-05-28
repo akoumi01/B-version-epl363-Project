@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Upload a File</h1>
+
+	<form action="api/request=/1/uploadFile/home/55/5" method="post" enctype="multipart/form-data">
+
+	   <p>
+		Select a file : <input type="file" name="file" size="50" />
+	   </p>
+
+	   <input type="submit" value="Upload It" />
+	   
+	</form>
+	<form action="api/request=/1/updateFile/home/kokatsos/Test5.txt" method="post" enctype="multipart/form-data">
+
+	   <p>
+		Select TO UPADATE a file : <input type="file" name="file" size="50" />
+	   </p>
+
+	   <input type="submit" value="Upload It" />
+	   
+	</form>
+	
+	<img src="http://localhost:11663/collaboration-platform/api/files/1/home/kokatsos/adam/9_c.jpg">
+	</body>
+</html>
